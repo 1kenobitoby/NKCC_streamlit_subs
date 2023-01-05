@@ -72,40 +72,40 @@ if check_password():
 
     months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-    with st.sidebar:
-        playername = st.selectbox('Who are you?', sortedplayernamelisting)
+    
+    playername = st.selectbox('Who are you?', sortedplayernamelisting)
 
-        season = st.selectbox('Season', ('2022', '2023'))
-        period_start = "01/01/" + season
-        period_end = "31/12/" + season
+    season = st.selectbox('Season', ('2022', '2023'))
+    period_start = "01/01/" + season
+    period_end = "31/12/" + season
 
-        selectedmonth = st.selectbox('What month do you want to calculate match fees for?', months) 
-        if selectedmonth == 'January':
-            month_string = '/01/'
-        elif selectedmonth == 'February':
-            month_string = '/02/'
-        elif selectedmonth == 'March':
-            month_string = '/03/'
-        elif selectedmonth == 'April':
-            month_string = '/04/'
-        elif selectedmonth == 'May':
-            month_string = '/05/'
-        elif selectedmonth == 'June':
-            month_string = '/06/'
-        elif selectedmonth == 'July':
-            month_string = '/07/'
-        elif selectedmonth == 'August':
-            month_string = '/08/'
-        elif selectedmonth == 'September':
-            month_string = '/09/'
-        elif selectedmonth == 'October':
-            month_string = '10'
-        elif selectedmonth == 'November':
-            month_string = '11'
-        else:
-            month_string = '12'
+    selectedmonth = st.selectbox('What month do you want to calculate match fees for?', months) 
+    if selectedmonth == 'January':
+        month_string = '/01/'
+    elif selectedmonth == 'February':
+        month_string = '/02/'
+    elif selectedmonth == 'March':
+        month_string = '/03/'
+    elif selectedmonth == 'April':
+        month_string = '/04/'
+    elif selectedmonth == 'May':
+        month_string = '/05/'
+    elif selectedmonth == 'June':
+        month_string = '/06/'
+    elif selectedmonth == 'July':
+        month_string = '/07/'
+    elif selectedmonth == 'August':
+        month_string = '/08/'
+    elif selectedmonth == 'September':
+        month_string = '/09/'
+    elif selectedmonth == 'October':
+        month_string = '10'
+    elif selectedmonth == 'November':
+        month_string = '11'
+    else:
+        month_string = '12'
 
-        calculate = st.button('Calculate')    
+    calculate = st.button('Calculate')    
 
     matchdates = []
     matchIDs = []
