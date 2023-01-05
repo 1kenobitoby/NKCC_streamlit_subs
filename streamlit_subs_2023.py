@@ -131,7 +131,7 @@ if check_password():
         #st.write("Calculating subs for ", selectedmonth, '...\n')
         spinner_text = ('Calculating subs for ' + selectedmonth + '...  \n')
         with st.spinner(spinner_text):
-            time.sleep(10) 
+            time.sleep(1) 
         st.success('') 
         # datelisting = ''
         # st.write('Match dates in ', selectedmonth, ':')
