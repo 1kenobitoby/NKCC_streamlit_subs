@@ -26,14 +26,14 @@ def check_password():
     if "password_correct" not in st.session_state:
         # First run, show input for password.
         password_entry_container.text_input(
-            'Type the magic word and click/tap anywhere on the screen', on_change=password_entered, key="password", help="If your mobile\'s on-screen Enter key doesn\'t work, simply tap the app screen after typing your password"
+            'Type the magic word in the box below. On a touch-screen device, tap the screen anywhere outside the box to enter the password', on_change=password_entered, key="password", help="If your mobile\'s on-screen Enter key doesn\'t work, simply tap the app screen after typing your password"
         )
         welcome_image_container.image('images/magic_word.png', use_column_width = True)
         return False
     elif not st.session_state["password_correct"]:
         # Password not correct, show input + error.
         password_entry_container.text_input(
-            'Type the magic word and click/tap anywhere on the screen', on_change=password_entered, key="password", help="If your mobile\'s on-screen Enter key doesn\'t work, simply tap the app screen after typing your password"
+            'Type the magic word in the box below. On a touch-screen device, tap the screen anywhere outside the box to enter the password', on_change=password_entered, key="password", help="If your mobile\'s on-screen Enter key doesn\'t work, simply tap the app screen after typing your password"
         )
         st.error("😕 Incorrect password dumbass. Have another go")
         return False
