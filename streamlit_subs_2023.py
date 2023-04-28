@@ -5,10 +5,10 @@ import time
 
 api_token = st.secrets['api_token']
 site_ID = st.secrets['site_id']
-# season = "2022"
-saturday_league_competition_id = str(102273)
-# period_start = "01/01/2022"
-# period_end = "31/12/2022"
+season = "2023"
+saturday_league_competition_id = str(110498)
+# period_start = "01/01/2023"
+# period_end = "31/12/2023"
 saturday_match_fee = 12
 other_match_fee = 6
 
@@ -77,7 +77,10 @@ if check_password():
     
     playername = st.selectbox('Who are you?', sortedplayernamelisting)
 
-    season = st.selectbox('Season', ('2022', '2023'))
+    # An option to produce a dropdown to allow calculating previous years
+    # season = st.selectbox('Season', ('2022', '2023'))
+    # period_start = "01/01/" + season
+    # period_end = "31/12/" + season
     period_start = "01/01/" + season
     period_end = "31/12/" + season
 
