@@ -9,8 +9,8 @@ season = "2023"
 saturday_league_competition_id = str(110498)
 # period_start = "01/01/2023"
 # period_end = "31/12/2023"
-saturday_match_fee = 12
-other_match_fee = 6
+saturday_match_fee = 10
+other_match_fee = 5
 
 def check_password():
     """Returns `True` if the user had the correct password."""
@@ -193,8 +193,8 @@ if check_password():
         other_games = next((item.get('Other games') for item in players if item['name'] == playername))
         subs = next((item.get('Subs') for item in players if item['name'] == playername))
 
-        st.write('You played in', sat_games, ' Saturday league games at £12 each.')
-        st.write('You played in', other_games, ' other games at £6 each.')
+        st.write('You played in', sat_games, ' Saturday league games at £10 each.')
+        st.write('You played in', other_games, ' other games at £5 each.')
         st.write('Capped at £40 max per month.')
         subs_string = str(subs)
         output_string = '<strong><p style=font-family:courier;color:green;>So you owe £' + subs_string + ' for the month of ' + selectedmonth + ' ' + season +'</p></strong>'
