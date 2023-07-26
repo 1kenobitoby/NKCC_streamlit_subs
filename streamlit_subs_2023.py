@@ -7,9 +7,11 @@ api_token = st.secrets['api_token']
 site_ID = st.secrets['site_id']
 season = "2023"
 saturday_league_competition_id = str(110498)
+womens_league_competition_id = str(110190)
 # period_start = "01/01/2023"
 # period_end = "31/12/2023"
 saturday_match_fee = 10
+womens_match_fee = 0
 other_match_fee = 5
 
 def check_password():
@@ -130,7 +132,9 @@ if check_password():
                 matchdates.append(date)
                 matchIDs.append(ID)
                 if comp_type == saturday_league_competition_id:
-                    competition.append('Saturday league')
+                    competition.append('Saturday league')           
+                elif comp_type == womens_league_competition_id:
+                    competition.append("Women's league")  
                 else:
                     competition.append('Other')
         #st.write("Calculating subs for ", selectedmonth, '...\n')
@@ -145,11 +149,12 @@ if check_password():
         # st.markdown(datelisting)    
     
     # players is a list of dictionaries which at the moment contains the player id and name of each player
-    # Loop through and add 'Saturday games', 'Other games' and 'Subs' keys to each and initialise with a value of 0.
+    # Loop through and add 'Saturday games', 'Womens games', 'Other games' and 'Subs' keys to each and initialise with a value of 0.
     # Then later we'll loop through the game players to match the ID and increment the games and subs
     
     for dictionary in players:
         dictionary['Saturday games'] = 0
+        dictionary["Women's games"] = 0
         dictionary['Other games'] = 0
         dictionary['Subs'] = 0
 
@@ -182,6 +187,9 @@ if check_password():
             if player['member_id'] in playedingame and competition  [ind_number] == 'Saturday league':
                 player['Saturday games'] +=1
                 player['Subs'] += saturday_match_fee
+            elif player['member_id'] in playedingame and competition[ind_number] == "Women's league":
+                player["Women's games"] +=1            
+                player['Subs'] += womens_match_fee
             elif player['member_id'] in playedingame:
                 player['Other games'] +=1
                 player['Subs'] += other_match_fee
@@ -190,10 +198,12 @@ if check_password():
     
     if calculate:
         sat_games = next((item.get('Saturday games') for item in players if item['name'] == playername))
+        womens_games = next((item.get("Women's games") for item in players if item['name'] == playername))
         other_games = next((item.get('Other games') for item in players if item['name'] == playername))
         subs = next((item.get('Subs') for item in players if item['name'] == playername))
 
         st.write('You played in', sat_games, ' Saturday league games at £10 each.')
+        st.write('You played in', womens_games, " women's league games at £0 each.")
         st.write('You played in', other_games, ' other games at £5 each.')
         st.write('Capped at £40 max per month.')
         subs_string = str(subs)
