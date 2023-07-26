@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import json
 import time
+import datetime
 
 api_token = st.secrets['api_token']
 site_ID = st.secrets['site_id']
@@ -112,6 +113,20 @@ if check_password():
     else:
         month_string = '12'
 
+    # Find the month using datetime to compare it to selected month
+    today = datetime.datetime.now()
+    month_now = (today.strftime("%B"))
+    month_now_number = (today.strftime("%m"))
+    # Cast month_now_number as an integer
+    month_now_number = int(month_now_number)
+
+    # Now turn month_string into a number to compare it to current month number
+    month_calculated_number = month_string
+    # Strip leading and trailing slashes
+    month_calculated_number = month_calculated_number.strip("/")
+    # Cast month_calculated_number as integer
+    month_calculated_number = int(month_calculated_number)
+
     calculate = st.button('Calculate')    
 
     matchdates = []
@@ -201,6 +216,12 @@ if check_password():
         womens_games = next((item.get("Women's games") for item in players if item['name'] == playername))
         other_games = next((item.get('Other games') for item in players if item['name'] == playername))
         subs = next((item.get('Subs') for item in players if item['name'] == playername))
+
+        if month_calculated_number > month_now_number:
+            st.image('images/Fuckwit.png', use_column_width=True)
+
+        if selectedmonth == month_now:
+            st.write("That month hasn't finished yet but here's how we're looking so far:")
 
         st.write('You played in', sat_games, ' Saturday league games at £10 each.')
         st.write('You played in', womens_games, " women's league games at £0 each.")
