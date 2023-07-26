@@ -218,6 +218,7 @@ if check_password():
         subs = next((item.get('Subs') for item in players if item['name'] == playername))
 
         if month_calculated_number > month_now_number:
+            st.markdown('**_Fairy Benmother is very cross with you!_**')
             st.image('images/Fuckwit.png', use_column_width=True)
 
         if selectedmonth == month_now:
